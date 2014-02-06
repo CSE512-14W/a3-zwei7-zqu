@@ -17,9 +17,15 @@ body {
   display: none;
 }
 
-.line {
+.retailline {
   fill: none;
-  stroke: steelblue;
+  stroke: #b20000;
+  stroke-width: 1.5px;
+}
+
+.farmline {
+  fill: none;
+  stroke: #00b233;
   stroke-width: 1.5px;
 }
 
@@ -69,8 +75,17 @@ d3.csv("butter.csv", function(error, data) {
     d.farm = d.farm;
   });
 
+/*
   x.domain(d3.extent(data, function(d) { return d.year; }));
-  y.domain(d3.extent(data, function(d) { return d.retail; }));
+  var retaildomain = d3.extent(data, function(d) { return d.retail; });
+  var farmdomain = d3.extent(data, function(d) { return d.farm; });
+  y.domain( d3.extent(retaildomain.concat(farmdomain)) );
+*/
+
+  x.domain( d3.extent(data, function(d) { return d.year; }));
+  var retaildomain = d3.extent(data, function(d) { return d.retail; });
+  var farmdomain = d3.extent(data, function(d) { return d.farm; });
+  y.domain( [0, d3.max(retaildomain.concat(farmdomain))] );
 
   svg.append("g")
       .attr("class", "x axis")
@@ -89,12 +104,12 @@ d3.csv("butter.csv", function(error, data) {
 
   svg.append("path")
       .datum(data)
-      .attr("class", "line")
+      .attr("class", "retailline")
       .attr("d", retailprice);
 
   svg.append("path")
       .datum(data)
-      .attr("class", "line")
+      .attr("class", "farmline")
       .attr("d", farmprice);
 });
 
