@@ -1,6 +1,9 @@
 var margin = {top: 5, right: 5, bottom: 5, left: 30},
-    width = 220 - margin.left - margin.right,
-    height = 110 - margin.top - margin.bottom;
+    fullwidth = 220,
+    fullheight = 110,
+    width = fullwidth - margin.left - margin.right,
+    height = fullheight - margin.top - margin.bottom;
+        
 
 var formatYear = d3.time.format("%Y").parse;
 
@@ -40,65 +43,66 @@ function SwitchView()
 
 function showpricecharts()
 {
-  d3.select("#columns").selectAll(".svgrow").remove();
+  d3.select("svg").selectAll(".cell").remove();
   // Price Charts
   // dairies
-  pricechart("#dairycolumn", "data/butter.csv", "butter");
-  pricechart("#dairycolumn", "data/cheese.csv", "cheese");
-  pricechart("#dairycolumn", "data/ice_cream.csv", "ice cream");
-  pricechart("#dairycolumn", "data/whole_milk.csv", "whole milk");
+  pricechart(0, 0, "data/butter.csv", "butter");
+  pricechart(0, fullheight, "data/cheese.csv", "cheese");
+  pricechart(0, fullheight*2, "data/ice_cream.csv", "ice cream");
+  pricechart(0, fullheight*3, "data/whole_milk.csv", "whole milk");
 
   // vegetables
-  pricechart("#veggicolumn", "data/broccoli.csv", "broccoli");
-  pricechart("#veggicolumn", "data/iceberg_lettuce.csv", "iceberg lettuce");
-  pricechart("#veggicolumn", "data/potatoes.csv", "potatoes");
-  pricechart("#veggicolumn", "data/tomatoes.csv", "tomatoes");
+  pricechart(fullwidth, 0, "data/broccoli.csv", "broccoli");
+  pricechart(fullwidth, fullheight, "data/iceberg_lettuce.csv", "iceberg lettuce");
+  pricechart(fullwidth, fullheight*2, "data/potatoes.csv", "potatoes");
+  pricechart(fullwidth, fullheight*3, "data/tomatoes.csv", "tomatoes");
 
   // fruits 
-  pricechart("#fruitcolumn1", "data/apples.csv", "apples");
-  pricechart("#fruitcolumn1", "data/grapefruit.csv", "grapefruit");
-  pricechart("#fruitcolumn1", "data/grapes.csv", "grapes");
-  pricechart("#fruitcolumn1", "data/lemons.csv", "lemons");
-  pricechart("#fruitcolumn2", "data/oranges.csv", "oranges");
-  pricechart("#fruitcolumn2", "data/peaches.csv", "peaches");
-  pricechart("#fruitcolumn2", "data/pears.csv", "pears");
-  pricechart("#fruitcolumn2", "data/strawberries.csv", "strawberries");
-
+  pricechart(fullwidth*2, 0, "data/apples.csv", "apples");
+  pricechart(fullwidth*2, fullheight, "data/grapefruit.csv", "grapefruit");
+  pricechart(fullwidth*2, fullheight*2, "data/grapes.csv", "grapes");
+  pricechart(fullwidth*2, fullheight*3, "data/lemons.csv", "lemons");
+  pricechart(fullwidth*3, 0, "data/oranges.csv", "oranges");
+  pricechart(fullwidth*3, fullheight, "data/peaches.csv", "peaches");
+  pricechart(fullwidth*3, fullheight*2, "data/pears.csv", "pears");
+  pricechart(fullwidth*3, fullheight*3, "data/strawberries.csv", "strawberries");
+  
   // time axies
-  drawtimeaxis();
+  //drawtimeaxis();
+  
 }
 
 function showpercentcharts()
 {
-  d3.select("#columns").selectAll(".svgrow").remove();
+  d3.select("svg").selectAll(".cell").remove();
   // Percent Charts
   // dairies
-  percentchart("#dairycolumn", "data/butter.csv", "butter");
-  percentchart("#dairycolumn", "data/cheese.csv", "cheese");
-  percentchart("#dairycolumn", "data/ice_cream.csv", "ice cream");
-  percentchart("#dairycolumn", "data/whole_milk.csv", "whole milk");
+  percentchart(0, 0, "data/butter.csv", "butter");
+  percentchart(0, fullheight, "data/cheese.csv", "cheese");
+  percentchart(0, fullheight*2, "data/ice_cream.csv", "ice cream");
+  percentchart(0, fullheight*3, "data/whole_milk.csv", "whole milk");
 
   // vegetables
-  percentchart("#veggicolumn", "data/broccoli.csv", "broccoli");
-  percentchart("#veggicolumn", "data/iceberg_lettuce.csv", "iceberg lettuce");
-  percentchart("#veggicolumn", "data/potatoes.csv", "potatoes");
-  percentchart("#veggicolumn", "data/tomatoes.csv", "tomatoes");
+  percentchart(fullwidth, 0, "data/broccoli.csv", "broccoli");
+  percentchart(fullwidth, fullheight*1, "data/iceberg_lettuce.csv", "iceberg lettuce");
+  percentchart(fullwidth, fullheight*2, "data/potatoes.csv", "potatoes");
+  percentchart(fullwidth, fullheight*3, "data/tomatoes.csv", "tomatoes");
 
   // fruits 
-  percentchart("#fruitcolumn1", "data/apples.csv", "apples");
-  percentchart("#fruitcolumn1", "data/grapefruit.csv", "grapefruit");
-  percentchart("#fruitcolumn1", "data/grapes.csv", "grapes");
-  percentchart("#fruitcolumn1", "data/lemons.csv", "lemons");
-  percentchart("#fruitcolumn2", "data/oranges.csv", "oranges");
-  percentchart("#fruitcolumn2", "data/peaches.csv", "peaches");
-  percentchart("#fruitcolumn2", "data/pears.csv", "pears");
-  percentchart("#fruitcolumn2", "data/strawberries.csv", "strawberries");
+  percentchart(fullwidth*2, 0, "data/apples.csv", "apples");
+  percentchart(fullwidth*2, fullheight, "data/grapefruit.csv", "grapefruit");
+  percentchart(fullwidth*2, fullheight*2, "data/grapes.csv", "grapes");
+  percentchart(fullwidth*2, fullheight*3, "data/lemons.csv", "lemons");
+  percentchart(fullwidth*3, 0, "data/oranges.csv", "oranges");
+  percentchart(fullwidth*3, fullheight, "data/peaches.csv", "peaches");
+  percentchart(fullwidth*3, fullheight*2, "data/pears.csv", "pears");
+  percentchart(fullwidth*3, fullheight*3, "data/strawberries.csv", "strawberries");
   
   // time axies
-  drawtimeaxis();
+  //drawtimeaxis();
 }
 
-function pricechart(column, individual_food, caption)
+function pricechart(offset_x, offset_y, individual_food, caption)
 {
 
   var retailprice = d3.svg.line()
@@ -109,14 +113,12 @@ function pricechart(column, individual_food, caption)
       .x(function(d) { return x(d.year); })
       .y(function(d) { return y(d.farm); });
 
-  var svgrow = d3.select(column).append("tr")
-      .attr("class", "svgrow");
 
-  var svg = svgrow.append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  var cell = d3.select("svg").append("g")
+      .attr("class", "cell")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("transform", "translate(" + (offset_x+margin.left) + "," + (offset_y+margin.top) + ")");
 
   d3.csv(individual_food, function(error, data) {
     data.forEach(function(d) {
@@ -129,12 +131,12 @@ function pricechart(column, individual_food, caption)
     var max = d3.extent(data, function(d) { return d.retail; });
     y.domain( [0, d3.max(max)] );
 
-    svg.append("g")
+    cell.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis);
 
-    svg.append("g")
+    cell.append("g")
         .attr("class", "y axis")
         .call(yAxis);
         /*
@@ -146,18 +148,18 @@ function pricechart(column, individual_food, caption)
         .text("Price ($)");
         */
 
-    svg.append("path")
+    cell.append("path")
         .datum(data)
         .attr("class", "retailline")
         .attr("d", retailprice);
 
-    svg.append("path")
+    cell.append("path")
         .datum(data)
         .attr("class", "farmline")
         .attr("d", farmprice);
     
     
-    svg.append("text")
+    cell.append("text")
         .text(caption)
         .attr("x", 0)
         .attr("y", 15)
@@ -167,21 +169,18 @@ function pricechart(column, individual_food, caption)
 
 }
 
-function percentchart(column, individual_food, caption)
+function percentchart(offset_x, offset_y, individual_food, caption)
 {
 
   var percentline = d3.svg.line()
       .x(function(d) { return x(d.year); })
       .y(function(d) { return y(d.percent); });
   
-  var svgrow = d3.select(column).append("tr")
-      .attr("class", "svgrow");
-
-  var svg = svgrow.append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  var cell = d3.select("svg").append("g")
+      .attr("class", "cell")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("transform", "translate(" + (offset_x+margin.left) + "," + (offset_y+margin.top) + ")");
 
   d3.csv(individual_food, function(error, data) {
     data.forEach(function(d) {
@@ -193,12 +192,12 @@ function percentchart(column, individual_food, caption)
     var max = d3.extent(data, function(d) { return d.percent; });
     y.domain( [0, d3.max(max)] );
 
-    svg.append("g")
+    cell.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis);
 
-    svg.append("g")
+    cell.append("g")
         .attr("class", "y axis")
         .call(yAxis);
         /*
@@ -210,24 +209,23 @@ function percentchart(column, individual_food, caption)
         .text("Farm/Retail %");
         */
 
-    svg.append("path")
+    cell.append("path")
         .datum(data)
         .attr("class", "percentline")
         .attr("d", percentline);
 
     
-    svg.append("text")
+    cell.append("text")
         .text(caption)
         .attr("x", 0)
         .attr("y", 15)
-        .style("text-anchor", "start");
-        
+        .style("text-anchor", "start"); 
     
   });
 
 }
 
-function drawtimeaxis()
+/*function drawtimeaxis()
 {
   x.domain( [formatYear("2000"), formatYear("2012")] );
 
@@ -243,4 +241,4 @@ function drawtimeaxis()
         .call(xAxis);
 
 
-}
+}*/

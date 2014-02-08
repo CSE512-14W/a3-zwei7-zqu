@@ -45,18 +45,10 @@ body {
 }
 
 
-
 </style>
 
 <body>
 
-<table id = "columns">
-  <td id="dairycolumn", class="datacolumn"></td>
-  <td id="veggicolumn", class="datacolumn" ></td>
-  <td id="fruitcolumn1", class="datacolumn"></td>
-  <td id="fruitcolumn2", class="datacolumn"></td>
-  <td> <button type="button" onclick="SwitchView()" id="SwitchButton">Show Farm/Retail Percentage</button> </td>
-</table>
 
 <script src="http://d3js.org/d3.v3.js"></script>
 <script src="linechart.js"></script>
@@ -64,8 +56,24 @@ body {
 
 <script>
 
+  d3.select("body").append("svg")
+    .attr("width", 1200)
+    .attr("height", 500);
+
   showpricecharts();
 
 </script>
+
+<button type="button" onclick="SwitchView()" id="SwitchButton">Show Farm/Retail Percentage</button> </td>
+
+<!-- 
+<table id = "columns">
+  <td id="dairycolumn", class="datacolumn"></td>
+  <td id="veggicolumn", class="datacolumn" ></td>
+  <td id="fruitcolumn1", class="datacolumn"></td>
+  <td id="fruitcolumn2", class="datacolumn"></td>
+  <td> 
+</table> -->
+
 
 </body>
