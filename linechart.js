@@ -2,8 +2,8 @@ function linechart(column, individual_food)
 {
 
 var margin = {top: 5, right: 5, bottom: 5, left: 30},
-    width = 200 - margin.left - margin.right,
-    height = 100 - margin.top - margin.bottom;
+    width = 220 - margin.left - margin.right,
+    height = 110 - margin.top - margin.bottom;
 
 var formatYear = d3.time.format("%Y").parse;
 
@@ -50,7 +50,7 @@ d3.csv(individual_food, function(error, data) {
 */
 
 
-  x.domain( d3.extent(data, function(d) { return d.year; }));
+  x.domain( [formatYear("2000"), formatYear("2012")] );
   var max = d3.extent(data, function(d) { return d.retail; });
   y.domain( [0, d3.max(max)] );
 
