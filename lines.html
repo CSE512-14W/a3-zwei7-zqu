@@ -6,14 +6,23 @@ body {
   font: 10px sans-serif;
 }
 
-.axis path,
-.axis line {
+.axis text {
+  font: 7px sans-serif;
+}
+
+.axis line,
+.axis path {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
 
-.x.axis path {
+.x.axis path
+{
+  display: none;
+}
+.y.axis path
+{
   display: none;
 }
 
@@ -38,29 +47,25 @@ body {
 
 
 </style>
+
 <body>
-<script src="http://d3js.org/d3.v3.js"></script>
-<script src="linechart.js"></script>
 
-
-
-<table class = "columns">
-  <td class="dairycolumn"></td>
-  <td class="veggicolumn"></td>
-  <td class="fruitcolumn1"></td>
-  <td class="fruitcolumn2"></td>
+<table id = "columns">
+  <td id="dairycolumn", class="datacolumn"></td>
+  <td id="veggicolumn", class="datacolumn" ></td>
+  <td id="fruitcolumn1", class="datacolumn"></td>
+  <td id="fruitcolumn2", class="datacolumn"></td>
   <td> <button type="button" onclick="SwitchView()" id="SwitchButton">Show Farm/Retail Percentage</button> </td>
 </table>
 
-
+<script src="http://d3js.org/d3.v3.js"></script>
+<script src="linechart.js"></script>
+<script src="cubism.v1.js"></script>
 
 <script>
 
-showpricecharts();
-
-
-
-
-
+  showpricecharts();
 
 </script>
+
+</body>
