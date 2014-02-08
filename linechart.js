@@ -1,4 +1,4 @@
-function linechart(individual_food)
+function linechart(column, individual_food)
 {
 
 var margin = {top: 5, right: 5, bottom: 5, left: 30},
@@ -29,7 +29,7 @@ var farmprice = d3.svg.line()
     .x(function(d) { return x(d.year); })
     .y(function(d) { return y(d.farm); });
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select(column).append("tr").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -49,17 +49,17 @@ d3.csv(individual_food, function(error, data) {
   y.domain( d3.extent(retaildomain.concat(farmdomain)) );
 */
 
-  x.domain( d3.extent(data, function(d) { return d.year; }));
-  var retaildomain = d3.extent(data, function(d) { return d.retail; });
-  var farmdomain = d3.extent(data, function(d) { return d.farm; });
-  y.domain( [0, d3.max(retaildomain.concat(farmdomain))] );
 
-/*
+  x.domain( d3.extent(data, function(d) { return d.year; }));
+  var max = d3.extent(data, function(d) { return d.retail; });
+  y.domain( [0, d3.max(max)] );
+
+
+
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
-*/
 
   svg.append("g")
       .attr("class", "y axis")
@@ -80,6 +80,11 @@ d3.csv(individual_food, function(error, data) {
       .datum(data)
       .attr("class", "farmline")
       .attr("d", farmprice);
+
+  svg.append("text")
+      .text(individual_food)
+      .attr("x", 0)
+      .attr("y", height);
 });
 
 }

@@ -34,33 +34,40 @@ body {
 <script src="http://d3js.org/d3.v3.js"></script>
 <script src="linechart.js"></script>
 
+
+
+<table class = "columns">
+  <td class="dairycolumn"></td>
+  <td class="veggicolumn"></td>
+  <td class="fruitcolumn1"></td>
+  <td class="fruitcolumn2"></td>
+</table>
+
+
 <script>
 
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
-linechart("butter.csv");
+//linechart("data/dairy_basket.csv");
+linechart(".dairycolumn", "data/butter.csv");
+linechart(".dairycolumn", "data/cheese.csv");
+linechart(".dairycolumn", "data/ice_cream.csv");
+linechart(".dairycolumn", "data/whole_milk.csv");
+
+//linechart("data/veg_basket.csv");
+linechart(".veggicolumn", "data/broccoli.csv");
+linechart(".veggicolumn", "data/iceberg_lettuce.csv");
+linechart(".veggicolumn", "data/potatoes.csv");
+linechart(".veggicolumn", "data/tomatoes.csv");
+
+//linechart("data/fruit_basket.csv");
+linechart(".fruitcolumn1", "data/apples.csv");
+linechart(".fruitcolumn1", "data/grapefruit.csv");
+linechart(".fruitcolumn1", "data/grapes.csv");
+linechart(".fruitcolumn1", "data/lemons.csv");
+linechart(".fruitcolumn2", "data/oranges.csv");
+linechart(".fruitcolumn2", "data/peaches.csv");
+linechart(".fruitcolumn2", "data/pears.csv");
+linechart(".fruitcolumn2", "data/strawberries.csv");
+
 
 
 </script>
