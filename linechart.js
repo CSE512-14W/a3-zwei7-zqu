@@ -21,18 +21,20 @@ var yAxis = d3.svg.axis()
 var currentview = "pricechart";
 function SwitchView()
 {
+  var button = d3.select("#SwitchButton")
   if(currentview === "pricechart")
   {
     console.log("Switch to percent chart!");  
     currentview = "percentchart";
     showpercentcharts();
-    
+    button.text("Show Retail & Farm Prices");
   }
   else if(currentview === "percentchart")
   {
     console.log("Switch to price chart!");  
     currentview = "pricechart";
     showpricecharts();
+    button.text("Show Farm/Retail Percentage");
   }
 }
 
