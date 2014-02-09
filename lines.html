@@ -1,79 +1,33 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<style>
+<head>
+  <title>
+    Farm to Consumer
+  </title>
 
-body {
-  font: 10px sans-serif;
-}
+  <link rel="stylesheet" type="text/css" href="F2C.css">
 
-.axis text {
-  font: 7px sans-serif;
-}
-
-.axis line,
-.axis path {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.x.axis path
-{
-  display: none;
-}
-.y.axis path
-{
-  display: none;
-}
-
-.retailline {
-  fill: none;
-  stroke: #0066cc;
-  stroke-width: 1.5px;
-}
-
-.farmline {
-  fill: none;
-  stroke: #cc6600;
-  stroke-width: 1.5px;
-}
-
-.percentline {
-  fill: none;
-  stroke: #339966;
-  stroke-width: 1.5px;
-}
-
-
-</style>
+  <script src="http://d3js.org/d3.v3.js"></script>
+  <script src="linechart.js"></script>
+  <script src="cubism.v1.js"></script>
+</head>
+  
 
 <body>
-
-
-<script src="http://d3js.org/d3.v3.js"></script>
-<script src="linechart.js"></script>
-<script src="cubism.v1.js"></script>
-
 <script>
 
-  d3.select("body").append("svg")
+  var svg = d3.select("body").append("svg")
     .attr("width", 1200)
     .attr("height", 500);
 
-  showpricecharts();
+    showpricecharts();
+    drawrules();
+      
 
 </script>
 
 <button type="button" onclick="SwitchView()" id="SwitchButton">Show Farm/Retail Percentage</button> </td>
 
-<!-- 
-<table id = "columns">
-  <td id="dairycolumn", class="datacolumn"></td>
-  <td id="veggicolumn", class="datacolumn" ></td>
-  <td id="fruitcolumn1", class="datacolumn"></td>
-  <td id="fruitcolumn2", class="datacolumn"></td>
-  <td> 
-</table> -->
 
 
 </body>

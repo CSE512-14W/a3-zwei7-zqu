@@ -225,6 +225,35 @@ function percentchart(offset_x, offset_y, individual_food, caption)
 
 }
 
+function drawrules()
+{
+  var rulesgroup = d3.select("svg").append("g")
+    .attr("class","rulesgroup")
+    .style("display", "none");
+
+  rulesgroup.append("line")
+          .attr("class", "rule")
+          .attr({
+            "x1": 0,
+            "y1": 0,
+            "x2": 0,
+            "y2": 500
+          });
+  
+  svg.on({
+      "mouseover": function() { rulesgroup.style("display", null);  },
+      "mouseout":  function() { rulesgroup.style("display", "none");  }, 
+      "mousemove": mousemove
+    });
+  
+  function mousemove() {
+    rulesgroup.attr("transform", "translate(" + (d3.mouse(this)[0]) + "," + 0 + ")");
+}
+  
+}
+
+
+
 /*function drawtimeaxis()
 {
   x.domain( [formatYear("2000"), formatYear("2012")] );

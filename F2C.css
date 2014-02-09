@@ -1,0 +1,48 @@
+
+body {
+  font: 10px sans-serif;
+}
+
+.axis text {
+  font: 7px sans-serif;
+}
+
+.axis line,
+.axis path {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path
+{
+  display: none;
+}
+.y.axis path
+{
+  display: none;
+}
+
+.retailline {
+  fill: none;
+  stroke: #0066cc;
+  stroke-width: 1.5px;
+}
+
+.farmline {
+  fill: none;
+  stroke: #cc6600;
+  stroke-width: 1.5px;
+}
+
+.percentline {
+  fill: none;
+  stroke: #339966;
+  stroke-width: 1.5px;
+}
+
+.rule {
+  fill: none;
+  stroke: red;
+  stroke-width: 1;
+}
