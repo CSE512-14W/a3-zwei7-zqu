@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+p {
+  font: 20px "Helvetica-Light";
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: steelblue;
+}
+.x.axis path {
+  display: none;
+}
+
+.retailline {
+  fill: none;
+  stroke: #0066cc;
+  stroke-width: 1.5px;
+}
+
+.farmline {
+  fill: none;
+  stroke: #cc6600;
+  stroke-width: 1.5px;
+}
+
+.percentline {
+  fill: none;
+  stroke: #339966;
+  stroke-width: 1.5px;
+}
+/*
+form {
+  position: absolute;
+  right: 10px;
+  top: 300px;
+  width:300px;
+  height:10em;
+}
+*/
+
+</style>
+<body>
+
+<form style="position: absolute; left: 950px; top: 100px; font-size: 14px" action="demo_form.asp">
+broccoli: <input type="text" name="broccoli" value="0"><br>
+iceberg: <input type="text" name="iceberg" value="0"><br>
+potatoes: <input type="text" name="potatoes" value="0"><br>
+tomatoes: <input type="text" name="tomatoes" value="0"><br>
+apples: <input type="text" name="apples" value="0"><br>
+grapfruit: <input type="text" name="grapfruit" value="0"><br>
+grapes: <input type="text" name="grapes" value="0"><br>
+lemons: <input type="text" name="lemons" value="0"><br>
+oranges: <input type="text" name="oranges" value="0"><br>
+peaches: <input type="text" name="peaches" value="0"><br>
+pears: <input type="text" name="pears" value="0"><br>
+strawberries: <input type="text" name="strawberries" value="0"><br>
+<input type="submit" value="compute">
+</form>
+
+<script src="http://d3js.org/d3.v3.js"></script>
+<script src="linechart.js"></script>
+<script src="barchart.js"></script>
+
+<table class = "columns">
+  <td class="dairycolumn"></td>
+  <td class="veggicolumn"></td>
+  <td class="fruitcolumn1"></td>
+  <td class="fruitcolumn2"></td>
+  <td> <button style="position: absolute; left: 950px; top: 20px" type="button" onclick="SwitchView()" id="SwitchButton">Show Farm/Retail Percentage</button> </td>
+  <td style="color: red; position: absolute; left: 1160px; top: 20px">— Retail Price</td>
+  <td style="color: green; position: absolute; left: 1230px; top: 20px">— Farm Price</td>
+</table style="position: absolute; left: 500px; top: 100px">
+<p style="position: absolute; left: 950px; top: 50px">How price spread from <em>Farmer</em> to <em>Consumer</em></p>
+
+<script>barcharts("data/data.csv");</script>
+<script>showpricecharts();</script>
+
+<!--<form>
+  <label><input type="radio" name="mode" value="grouped"> Grouped</label>
+  <label><input type="radio" name="mode" value="stacked" checked> Stacked</label>
+</form>
+  <script src="barchart.js"></script>
+  <svg width="960" height="500">
+    <g transform="translate(10, 40)"></g>
+  </svg>-->
+</body>
+</html>
