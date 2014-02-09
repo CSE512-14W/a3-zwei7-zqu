@@ -37,6 +37,8 @@ function showbarchart()
       .attr("class", "y axis")
       .call(yAxis);
     
+    
 
+    
 }
 

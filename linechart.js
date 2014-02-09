@@ -156,6 +156,7 @@ function pricechart(offset_x, offset_y, individual_food, caption)
         .attr("d", retailprice);
     retailgroup.append("text")
         .attr("class", "datalabel")
+        .attr("name", "retail_text_label")
         .style("display", "none")
         .text("retail default")
         .style("text-anchor", "start")
@@ -403,8 +404,11 @@ function svglisten()
             return "grey";
         } );
       
+      
+      
+
       var retail_labels = d3.selectAll(".retailgroup").selectAll(".datalabel")  
-        .text(function (d, i)
+        .text(function (d)
           {
             // get path
             var retailpath = d3.select(this.parentNode).select("path");
@@ -418,11 +422,15 @@ function svglisten()
             x0 =  x.invert(  (d3.mouse(svg.node())[0]-margin.left)%fullwidth );
             
             var bisectYear = d3.bisector(function(d) { return d.year; }).left;
-            i = bisectYear(retaildata, x0);
-            if(i<1)
+            var index = bisectYear(retaildata, x0);
+            if(index<1)
+            {
               var retailvalue = "";
+            }
             else
-              var retailvalue = d3.round(retaildata[i-1].retail, 2);
+            {
+              var retailvalue = d3.round(retaildata[index-1].retail, 2);
+            }
 
             return retailvalue;
           })
@@ -458,11 +466,11 @@ function svglisten()
               var retailpos = y(retailvalue);
             }
 
-            
-            //console.log(retailpos);
 
             return "translate(" + ( (d3.mouse(svg.node())[0]-margin.left)%fullwidth ) + "," + retailpos + ")";
           });
+      
+      
 
       var farm_labels = d3.selectAll(".farmgroup").selectAll(".datalabel")  
         .text(function (d, i)
@@ -586,6 +594,43 @@ function svglisten()
 
             return "translate(" + ( (d3.mouse(svg.node())[0]-margin.left)%fullwidth ) + "," + percentpos + ")";
           });      
+
+      var barchart = d3.select(".barchart");
+      var slc = document.getElementsByName('retail_text_label');
+      var retailarray = [
+        slc[0].innerHTML,
+        slc[1].innerHTML,
+        slc[2].innerHTML,
+        slc[3].innerHTML,
+        slc[4].innerHTML,
+        slc[5].innerHTML,
+        slc[6].innerHTML,
+        slc[7].innerHTML,
+        slc[8].innerHTML,
+        slc[9].innerHTML,
+        slc[10].innerHTML,
+        slc[11].innerHTML,
+        slc[12].innerHTML,
+        slc[13].innerHTML,
+        slc[14].innerHTML,
+        slc[15].innerHTML,
+        ];
+      console.log(retailarray);
+
+      barchart.selectAll(".retailrect")
+        .data(retailarray)
+        .enter()
+          .append("rect")
+          .attr("width", 20)
+          .attr("height", function(d) { return d*10; })
+          .attr("x", function(d) { return d*2; })
+          .attr("y", function(d) { return d*5; });
+
+      var text = document.getElementsByName('retail_text_label')[0].innerHTML;
+      
+
+      
+    
     }});
 }
 
