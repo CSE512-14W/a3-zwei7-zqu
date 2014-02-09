@@ -43,8 +43,9 @@ body {
 
 .rule {
   fill: none;
-  stroke: red;
-  stroke-width: 1;
+  stroke: grey;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
 }
 
 .interactive {

@@ -148,15 +148,26 @@ function pricechart(offset_x, offset_y, individual_food, caption)
         .text("Price ($)");
         */
 
-    cell.append("path")
+    var retailpath = cell.append("g");
+    retailpath.append("path")
         .datum(data)
         .attr("class", "retailline")
         .attr("d", retailprice);
+    retailpath.append("text")
+        .attr("class", "datalabel")
+        .style("display", "none")
+        .text("retail default");
 
-    cell.append("path")
+    var farmpath = cell.append("g");
+    farmpath.append("path")
         .datum(data)
         .attr("class", "farmline")
         .attr("d", farmprice);
+
+    farmpath.append("text")
+        .attr("class", "datalabel")
+        .style("display", "none")
+        .text("farm default");
     
     
     cell.append("text")
@@ -171,10 +182,19 @@ function pricechart(offset_x, offset_y, individual_food, caption)
         .attr("width", width)
         .attr("height", height)
         .on({
-      "mouseover": function() { d3.select(".rulesgroup").style("display", null);  },
-      "mouseout":  function() { d3.select(".rulesgroup").style("display", "none");  }, 
-      "mousemove": mousemove
-    });
+        "mouseover": 
+          function() { 
+            d3.select(".rulesgroup").style("display", null); 
+            d3.selectAll(".datalabel").style("display", null);
+          },
+        "mouseout":  
+          function() { 
+            d3.select(".rulesgroup").style("display", "none");  
+            d3.selectAll(".datalabel").style("display", "none");
+          }, 
+        "mousemove": 
+          mousemove
+      });
         
   });
 
@@ -220,11 +240,15 @@ function percentchart(offset_x, offset_y, individual_food, caption)
         .text("Farm/Retail %");
         */
 
-    cell.append("path")
+    var percentpath = cell.append("g");
+    percentpath.append("path")
         .datum(data)
         .attr("class", "percentline")
         .attr("d", percentline);
-
+    percentpath.append("text")
+        .attr("class", "datalabel")
+        .style("display", "none")
+        .text("percent default");
     
     cell.append("text")
         .text(caption)
@@ -237,10 +261,18 @@ function percentchart(offset_x, offset_y, individual_food, caption)
         .attr("width", width)
         .attr("height", height)
         .on({
-      "mouseover": function() { d3.select(".rulesgroup").style("display", null);  },
-      "mouseout":  function() { d3.select(".rulesgroup").style("display", "none");  }, 
-      "mousemove": mousemove
-    });;
+        "mouseover": 
+          function() { 
+            d3.select(".rulesgroup").style("display", null);  
+            d3.selectAll(".datalabel").style("display", null);
+          },
+        "mouseout":  
+          function() { 
+            d3.select(".rulesgroup").style("display", "none");  
+            d3.selectAll(".datalabel").style("display", "none");
+          }, 
+        "mousemove": mousemove
+        });;
     
   });
 
@@ -290,7 +322,10 @@ function drawrules()
 }
 
 function mousemove() {
-  d3.select(".rulesgroup").attr("transform", "translate(" + (d3.mouse(this)[0]+margin.left) + "," + 0 + ")");
+  d3.select(".rulesgroup")
+    .attr("transform", "translate(" + (d3.mouse(this)[0]+margin.left) + ",0)");
+  d3.selectAll(".datalabel")
+    .attr("transform", "translate(" + (d3.mouse(this)[0]) + ",5)");
 }
 
 /*function drawtimeaxis()
