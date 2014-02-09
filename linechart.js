@@ -380,6 +380,7 @@ function drawrules()
           });
 }
 
+
 function svglisten()
 {
   d3.select("svg").on(
@@ -421,7 +422,7 @@ function svglisten()
             if(i<1)
               var retailvalue = "";
             else
-              var retailvalue = retaildata[i-1].retail;
+              var retailvalue = d3.round(retaildata[i-1].retail, 2);
 
             return retailvalue;
           })
@@ -482,7 +483,9 @@ function svglisten()
             if(i<1)
               var farmvalue = "";
             else
-              var farmvalue = farmdata[i-1].farm;
+            {
+              var farmvalue = d3.round(farmdata[i-1].farm, 2);
+            }
 
             return farmvalue;
           })
@@ -543,7 +546,9 @@ function svglisten()
             if(i<1)
               var percentvalue = "";
             else
-              var percentvalue = percentdata[i-1].percent;
+            {
+              var percentvalue = d3.round(percentdata[i-1].percent, 0);
+            }
 
             return percentvalue;
           })
