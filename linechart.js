@@ -141,7 +141,7 @@ function pricechart(offset_x, offset_y, individual_food, caption)
         .call(yAxis);
         /*
       .append("text")
-        .attr("transform", "translate(-30,0), rotate(-90)")
+        .attr("transform", "translate(-margin.left,0), rotate(-90)")
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
@@ -388,10 +388,10 @@ function svglisten()
     function ()
     {
       // move the four rules
-      var current_rule = Math.floor( d3.mouse(this)[0]/220 );
+      var current_rule = Math.floor( d3.mouse(this)[0]/fullwidth );
 
       d3.select(".rulesgroup")
-        .attr("transform", "translate(" + (d3.mouse(this)[0]%220) + ",0)");
+        .attr("transform", "translate(" + (d3.mouse(this)[0]%fullwidth) + ",0)");
       
       //console.log(this);
 
@@ -415,7 +415,7 @@ function svglisten()
                 .range([0, width])
                 .domain( [formatYear("2000"), formatYear("2012")] );
 
-            x0 =  x.invert(  (d3.mouse(svg.node())[0]-30)%220 );
+            x0 =  x.invert(  (d3.mouse(svg.node())[0]-margin.left)%fullwidth );
             
             var bisectYear = d3.bisector(function(d) { return d.year; }).left;
             i = bisectYear(retaildata, x0);
@@ -444,7 +444,7 @@ function svglisten()
             //console.log(yMax);
             y.domain([0, yMax]);
 
-            x0 =  x.invert(  (d3.mouse(svg.node())[0]-30)%220 );
+            x0 =  x.invert(  (d3.mouse(svg.node())[0]-margin.left)%fullwidth );
             
             var bisectYear = d3.bisector(function(d) { return d.year; }).left;
             i = bisectYear(retaildata, x0);
@@ -461,7 +461,7 @@ function svglisten()
             
             //console.log(retailpos);
 
-            return "translate(" + ( (d3.mouse(svg.node())[0]-30)%220 ) + "," + retailpos + ")";
+            return "translate(" + ( (d3.mouse(svg.node())[0]-margin.left)%fullwidth ) + "," + retailpos + ")";
           });
 
       var farm_labels = d3.selectAll(".farmgroup").selectAll(".datalabel")  
@@ -476,7 +476,7 @@ function svglisten()
                 .range([0, width])
                 .domain( [formatYear("2000"), formatYear("2012")] );
 
-            x0 =  x.invert(  (d3.mouse(svg.node())[0]-30)%220 );
+            x0 =  x.invert(  (d3.mouse(svg.node())[0]-margin.left)%fullwidth );
             
             var bisectYear = d3.bisector(function(d) { return d.year; }).left;
             i = bisectYear(farmdata, x0);
@@ -507,7 +507,7 @@ function svglisten()
             //console.log(yMax);
             y.domain([0, yMax]);
 
-            x0 =  x.invert(  (d3.mouse(svg.node())[0]-30)%220 );
+            x0 =  x.invert(  (d3.mouse(svg.node())[0]-margin.left)%fullwidth );
             
             var bisectYear = d3.bisector(function(d) { return d.year; }).left;
             i = bisectYear(farmdata, x0);
@@ -524,7 +524,7 @@ function svglisten()
             
             //console.log(retailpos);
 
-            return "translate(" + ( (d3.mouse(svg.node())[0]-30)%220 ) + "," + farmpos + ")";
+            return "translate(" + ( (d3.mouse(svg.node())[0]-margin.left)%fullwidth ) + "," + farmpos + ")";
           });      
 
       var percent_labels = d3.selectAll(".percentgroup").selectAll(".datalabel")  
@@ -539,7 +539,7 @@ function svglisten()
                 .range([0, width])
                 .domain( [formatYear("2000"), formatYear("2012")] );
 
-            x0 =  x.invert(  (d3.mouse(svg.node())[0]-30)%220 );
+            x0 =  x.invert(  (d3.mouse(svg.node())[0]-margin.left)%fullwidth );
             
             var bisectYear = d3.bisector(function(d) { return d.year; }).left;
             i = bisectYear(percentdata, x0);
@@ -570,7 +570,7 @@ function svglisten()
             //console.log(yMax);
             y.domain([0, yMax]);
 
-            x0 =  x.invert(  (d3.mouse(svg.node())[0]-30)%220 );
+            x0 =  x.invert(  (d3.mouse(svg.node())[0]-margin.left)%fullwidth );
             
             var bisectYear = d3.bisector(function(d) { return d.year; }).left;
             i = bisectYear(percentdata, x0);
@@ -584,7 +584,7 @@ function svglisten()
               var percentpos = y(percentvalue);
             }
 
-            return "translate(" + ( (d3.mouse(svg.node())[0]-30)%220 ) + "," + percentpos + ")";
+            return "translate(" + ( (d3.mouse(svg.node())[0]-margin.left)%fullwidth ) + "," + percentpos + ")";
           });      
     }});
 }
