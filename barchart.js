@@ -37,7 +37,18 @@ function showbarchart()
       .attr("class", "y axis")
       .call(yAxis);
     
+    for(var j=0; j<16; j++)
+    {
+      barchart.append("rect")
+        .attr("width", 40)
+        .attr("x", x("retail") )
+        .attr("class", "retailrect");	
+    }
+      
     
+    
+    
+
 
     
 }

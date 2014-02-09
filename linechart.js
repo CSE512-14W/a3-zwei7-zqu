@@ -617,20 +617,13 @@ function svglisten()
         ];
       console.log(retailarray);
 
-      barchart.selectAll(".retailrect")
-        .data(retailarray)
-        .enter()
-          .append("rect")
-          .attr("width", 20)
-          .attr("height", function(d) { return d*10; })
-          .attr("x", function(d) { return d*2; })
-          .attr("y", function(d) { return d*5; });
+      var retailrects = barchart.selectAll(".retailrect")
+        .data(retailarray);
 
-      var text = document.getElementsByName('retail_text_label')[0].innerHTML;
+      retailrects
+          .attr("height", function(d) { return d*3; })
+          .attr("y", function(d) { return d*50; });
       
-
-      
-    
     }});
 }
 
