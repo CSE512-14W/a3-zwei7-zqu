@@ -173,7 +173,7 @@ function pricechart(offset_x, offset_y, individual_food, caption)
     farmgroup.append("text")
         .attr("class", "datalabel")
         .style("display", "none")
-        .text("farm default")
+        .text("")
         .style("text-anchor", "start")
         .attr("x", 0)
         .attr("y", 10);
@@ -201,13 +201,14 @@ function pricechart(offset_x, offset_y, individual_food, caption)
             d3.select(".rulesgroup").style("display", "none");  
             d3.selectAll(".datalabel").style("display", "none");
           }, 
-          
+          /*
         "mousemove": 
+        
           function mousemove() {
             // move the four rules
             d3.select(".rulesgroup")
               .attr("transform", "translate(" + (d3.mouse(this)[0]+margin.left) + ",0)");
-              /*
+              
             x0 = (x.invert(d3.mouse(this)[0]));
             //console.log(x0);
             var bisectYear = d3.bisector(function(d) { return d.year; }).left;
@@ -229,10 +230,10 @@ function pricechart(offset_x, offset_y, individual_food, caption)
             d3.selectAll(".farmgroup").selectAll(".datalabel")
               .attr("transform", "translate(" + (d3.mouse(this)[0]) + "," + (y(data[i].farm)) + ")")
               .text(  "F" + data[i].farm  );
-              */
+              
               
           }
-          
+          */
       });
         
   });
@@ -321,6 +322,7 @@ function percentchart(offset_x, offset_y, individual_food, caption)
             d3.select(".rulesgroup").style("display", "none");  
             d3.selectAll(".datalabel").style("display", "none");
           }, 
+          /*
         "mousemove": 
           function () {
             d3.select(".rulesgroup")
@@ -328,6 +330,7 @@ function percentchart(offset_x, offset_y, individual_food, caption)
             d3.selectAll(".retailgroup").selectAll(".datalabel")
               .attr("transform", "translate(" + (d3.mouse(this)[0]) + ",5)");
           }
+          */
         });;
     
   });
@@ -377,12 +380,14 @@ function drawrules()
           });
 }
 
+/*
 function mousemove() {
   d3.select(".rulesgroup")
     .attr("transform", "translate(" + (d3.mouse(this)[0]+margin.left) + ",0)");
   d3.selectAll(".retailgroup").selectAll(".datalabel")
     .attr("transform", "translate(" + (d3.mouse(this)[0]) + ",5)");
 }
+*/
 
 /*function drawtimeaxis()
 {
