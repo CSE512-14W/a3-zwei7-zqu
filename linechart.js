@@ -463,7 +463,66 @@ function svglisten()
             return "translate(" + ( (d3.mouse(svg.node())[0]-30)%220 ) + "," + retailpos + ")";
           });
 
-      
+      var farm_labels = d3.selectAll(".farmgroup").selectAll(".datalabel")  
+        .text(function (d, i)
+          {
+            // get path
+            var farmpath = d3.select(this.parentNode).select("path");
+            var farmdata = farmpath.datum();
+            
+            // reconstruct x scale
+            var x = d3.time.scale()
+                .range([0, width])
+                .domain( [formatYear("2000"), formatYear("2012")] );
+
+            x0 =  x.invert(  (d3.mouse(svg.node())[0]-30)%220 );
+            
+            var bisectYear = d3.bisector(function(d) { return d.year; }).left;
+            i = bisectYear(farmdata, x0);
+            if(i<1)
+              var farmvalue = "";
+            else
+              var farmvalue = farmdata[i-1].farm;
+
+            return farmvalue;
+          })
+          .attr("transform", function()
+          {
+            // get path
+            var farmpath = d3.select(this.parentNode).select("path");
+            var farmdata = farmpath.datum();
+            
+            // reconstruct x scale
+            var x = d3.time.scale()
+                .range([0, width])
+                .domain( [formatYear("2000"), formatYear("2012")] );
+
+            // reconstruct y scale
+            var y = d3.scale.linear()
+              .range([height, 0]);
+            var yMax = d3.max( farmdata, function(d) {return d.retail;} );
+            //console.log(yMax);
+            y.domain([0, yMax]);
+
+            x0 =  x.invert(  (d3.mouse(svg.node())[0]-30)%220 );
+            
+            var bisectYear = d3.bisector(function(d) { return d.year; }).left;
+            i = bisectYear(farmdata, x0);
+            if(i<1)
+            {
+              var farmpos = 0;
+            }
+            else
+            {
+              var farmvalue = farmdata[i-1].farm;
+              var farmpos = y(farmvalue);
+            }
+
+            
+            //console.log(retailpos);
+
+            return "translate(" + ( (d3.mouse(svg.node())[0]-30)%220 ) + "," + farmpos + ")";
+          });      
     }});
 }
 
