@@ -164,6 +164,17 @@ function pricechart(offset_x, offset_y, individual_food, caption)
         .attr("x", 0)
         .attr("y", 15)
         .style("text-anchor", "start");
+
+    cell.append("g")
+        .attr("class", "interactive")
+        .append("rect")
+        .attr("width", width)
+        .attr("height", height)
+        .on({
+      "mouseover": function() { d3.select(".rulesgroup").style("display", null);  },
+      "mouseout":  function() { d3.select(".rulesgroup").style("display", "none");  }, 
+      "mousemove": mousemove
+    });
         
   });
 
@@ -220,6 +231,16 @@ function percentchart(offset_x, offset_y, individual_food, caption)
         .attr("x", 0)
         .attr("y", 15)
         .style("text-anchor", "start"); 
+
+    cell.append("g").append("rect")
+        .attr("class", "interactive")
+        .attr("width", width)
+        .attr("height", height)
+        .on({
+      "mouseover": function() { d3.select(".rulesgroup").style("display", null);  },
+      "mouseout":  function() { d3.select(".rulesgroup").style("display", "none");  }, 
+      "mousemove": mousemove
+    });;
     
   });
 
@@ -237,22 +258,40 @@ function drawrules()
             "x1": 0,
             "y1": 0,
             "x2": 0,
-            "y2": 500
+            "y2": 460
+          });
+
+  rulesgroup.append("line")
+          .attr("class", "rule")
+          .attr({
+            "x1": fullwidth,
+            "y1": 0,
+            "x2": fullwidth,
+            "y2": 460
+          });
+
+  rulesgroup.append("line")
+          .attr("class", "rule")
+          .attr({
+            "x1": fullwidth*2,
+            "y1": 0,
+            "x2": fullwidth*2,
+            "y2": 460
           });
   
-  svg.on({
-      "mouseover": function() { rulesgroup.style("display", null);  },
-      "mouseout":  function() { rulesgroup.style("display", "none");  }, 
-      "mousemove": mousemove
-    });
-  
-  function mousemove() {
-    rulesgroup.attr("transform", "translate(" + (d3.mouse(this)[0]) + "," + 0 + ")");
-}
-  
+  rulesgroup.append("line")
+          .attr("class", "rule")
+          .attr({
+            "x1": fullwidth*3,
+            "y1": 0,
+            "x2": fullwidth*3,
+            "y2": 460
+          });
 }
 
-
+function mousemove() {
+  d3.select(".rulesgroup").attr("transform", "translate(" + (d3.mouse(this)[0]+margin.left) + "," + 0 + ")");
+}
 
 /*function drawtimeaxis()
 {

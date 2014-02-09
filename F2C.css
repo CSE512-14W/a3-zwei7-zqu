@@ -46,3 +46,8 @@ body {
   stroke: red;
   stroke-width: 1;
 }
+
+.interactive {
+  fill: white;
+  fill-opacity: 0.1;
+}
