@@ -23,6 +23,27 @@
     drawrules();
     showpricecharts();  
 
+    svg.on(
+      {"mousemove":
+      function ()
+      {
+        // move the four rules
+        var current_rule = Math.floor( d3.mouse(this)[0]/220 );
+
+        d3.select(".rulesgroup")
+          .attr("transform", "translate(" + (d3.mouse(this)[0]-current_rule*220) + ",0)");
+         
+        d3.selectAll(".rule")
+          .style("stroke", function (d,i) {
+            if(i===current_rule)
+              return "red";
+            else
+              return "grey";
+          } );
+
+        
+      }});
+
 </script>
 
 <button type="button" onclick="SwitchView()" id="SwitchButton">Show Farm/Retail Percentage</button> </td>

@@ -148,26 +148,35 @@ function pricechart(offset_x, offset_y, individual_food, caption)
         .text("Price ($)");
         */
 
-    var retailpath = cell.append("g");
-    retailpath.append("path")
+    var retailgroup = cell.append("g")
+        .attr("class", "retailgroup");
+    var retailpath = retailgroup.append("path")
         .datum(data)
         .attr("class", "retailline")
         .attr("d", retailprice);
-    retailpath.append("text")
+    retailgroup.append("text")
         .attr("class", "datalabel")
         .style("display", "none")
-        .text("retail default");
+        .text("retail default")
+        .style("text-anchor", "start")
+        .attr("x", 0)
+        .attr("y", 10);
+    
 
-    var farmpath = cell.append("g");
-    farmpath.append("path")
+    var farmgroup = cell.append("g")
+        .attr("class", "farmgroup");
+    var farmpath = farmgroup.append("path")
         .datum(data)
         .attr("class", "farmline")
         .attr("d", farmprice);
 
-    farmpath.append("text")
+    farmgroup.append("text")
         .attr("class", "datalabel")
         .style("display", "none")
-        .text("farm default");
+        .text("farm default")
+        .style("text-anchor", "start")
+        .attr("x", 0)
+        .attr("y", 10);
     
     
     cell.append("text")
@@ -192,12 +201,52 @@ function pricechart(offset_x, offset_y, individual_food, caption)
             d3.select(".rulesgroup").style("display", "none");  
             d3.selectAll(".datalabel").style("display", "none");
           }, 
+          
         "mousemove": 
-          mousemove
+          function mousemove() {
+            // move the four rules
+            d3.select(".rulesgroup")
+              .attr("transform", "translate(" + (d3.mouse(this)[0]+margin.left) + ",0)");
+              /*
+            x0 = (x.invert(d3.mouse(this)[0]));
+            //console.log(x0);
+            var bisectYear = d3.bisector(function(d) { return d.year; }).left;
+            i = bisectYear(data, x0);
+            //console.log(data);
+            //console.log(data[i].retail);
+            
+            var selection = d3.selectAll(".retailgroup").selectAll(".datalabel");
+            //console.log(selection);
+            
+              .attr("transform", "translate(" + 
+                function(d) {(d.x(data[i].year))}
+                 + "," + 
+                 function(d) {(d.y(data[i].retail))}
+                 + ")")
+              .text(  "R" + data[i].retail  );
+            
+
+            d3.selectAll(".farmgroup").selectAll(".datalabel")
+              .attr("transform", "translate(" + (d3.mouse(this)[0]) + "," + (y(data[i].farm)) + ")")
+              .text(  "F" + data[i].farm  );
+              */
+              
+          }
+          
       });
         
   });
 
+}
+
+function findYatX(x, line) {
+     function getXY(len) {
+          var point = line.getPointAtLength(len);
+          return [point.x, point.y];
+     }
+     var curlen = 0;
+     while (getXY(curlen)[0] < x) { curlen += 0.01; }
+     return getXY(curlen)[1];
 }
 
 function percentchart(offset_x, offset_y, individual_food, caption)
@@ -240,7 +289,8 @@ function percentchart(offset_x, offset_y, individual_food, caption)
         .text("Farm/Retail %");
         */
 
-    var percentpath = cell.append("g");
+    var percentpath = cell.append("g")
+        .attr("class", "percentgroup");
     percentpath.append("path")
         .datum(data)
         .attr("class", "percentline")
@@ -271,7 +321,13 @@ function percentchart(offset_x, offset_y, individual_food, caption)
             d3.select(".rulesgroup").style("display", "none");  
             d3.selectAll(".datalabel").style("display", "none");
           }, 
-        "mousemove": mousemove
+        "mousemove": 
+          function () {
+            d3.select(".rulesgroup")
+              .attr("transform", "translate(" + (d3.mouse(this)[0]+margin.left) + ",0)");
+            d3.selectAll(".retailgroup").selectAll(".datalabel")
+              .attr("transform", "translate(" + (d3.mouse(this)[0]) + ",5)");
+          }
         });;
     
   });
@@ -324,7 +380,7 @@ function drawrules()
 function mousemove() {
   d3.select(".rulesgroup")
     .attr("transform", "translate(" + (d3.mouse(this)[0]+margin.left) + ",0)");
-  d3.selectAll(".datalabel")
+  d3.selectAll(".retailgroup").selectAll(".datalabel")
     .attr("transform", "translate(" + (d3.mouse(this)[0]) + ",5)");
 }
 
