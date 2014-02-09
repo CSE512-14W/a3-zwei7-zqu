@@ -418,7 +418,10 @@ function svglisten()
             
             var bisectYear = d3.bisector(function(d) { return d.year; }).left;
             i = bisectYear(retaildata, x0);
-            var retailvalue = retaildata[i-1].retail;
+            if(i<1)
+              var retailvalue = "";
+            else
+              var retailvalue = retaildata[i-1].retail;
 
             return retailvalue;
           })
@@ -444,9 +447,17 @@ function svglisten()
             
             var bisectYear = d3.bisector(function(d) { return d.year; }).left;
             i = bisectYear(retaildata, x0);
-            var retailvalue = retaildata[i-1].retail;
+            if(i<1)
+            {
+              var retailpos = 0;
+            }
+            else
+            {
+              var retailvalue = retaildata[i-1].retail;
+              var retailpos = y(retailvalue);
+            }
 
-            var retailpos = y(retailvalue);
+            
             //console.log(retailpos);
 
             return "translate(" + ( (d3.mouse(svg.node())[0]-30)%220 ) + "," + retailpos + ")";
