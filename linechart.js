@@ -402,26 +402,54 @@ function svglisten()
             return "grey";
         } );
       
-      var retail_labels = d3.selectAll(".retailgroup").selectAll(".datalabel")
-        .attr("transform", function()
-          {
-            return "translate(" + ( (d3.mouse(svg.node())[0]-30)%220 ) + ",20)";
-          })
+      var retail_labels = d3.selectAll(".retailgroup").selectAll(".datalabel")  
         .text(function (d, i)
           {
+            // get path
             var retailpath = d3.select(this.parentNode).select("path");
-
+            var retaildata = retailpath.datum();
+            
+            // reconstruct x scale
             var x = d3.time.scale()
                 .range([0, width])
                 .domain( [formatYear("2000"), formatYear("2012")] );
-            x0 =  x.invert(  (d3.mouse(svg.node())[0] -30)%220 );
+
+            x0 =  x.invert(  (d3.mouse(svg.node())[0]-30)%220 );
             
             var bisectYear = d3.bisector(function(d) { return d.year; }).left;
-            var retaildata = retailpath.datum();
             i = bisectYear(retaildata, x0);
-            console.log(i-1);
-            var label = retaildata[i-1].retail;
-            return label;
+            var retailvalue = retaildata[i-1].retail;
+
+            return retailvalue;
+          })
+          .attr("transform", function()
+          {
+            // get path
+            var retailpath = d3.select(this.parentNode).select("path");
+            var retaildata = retailpath.datum();
+            
+            // reconstruct x scale
+            var x = d3.time.scale()
+                .range([0, width])
+                .domain( [formatYear("2000"), formatYear("2012")] );
+
+            // reconstruct y scale
+            var y = d3.scale.linear()
+              .range([height, 0]);
+            var yMax = d3.max( retaildata, function(d) {return d.retail;} );
+            //console.log(yMax);
+            y.domain([0, yMax]);
+
+            x0 =  x.invert(  (d3.mouse(svg.node())[0]-30)%220 );
+            
+            var bisectYear = d3.bisector(function(d) { return d.year; }).left;
+            i = bisectYear(retaildata, x0);
+            var retailvalue = retaildata[i-1].retail;
+
+            var retailpos = y(retailvalue);
+            //console.log(retailpos);
+
+            return "translate(" + ( (d3.mouse(svg.node())[0]-30)%220 ) + "," + retailpos + ")";
           });
 
       
