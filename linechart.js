@@ -380,6 +380,54 @@ function drawrules()
           });
 }
 
+function svglisten()
+{
+  d3.select("svg").on(
+    {"mousemove":
+    function ()
+    {
+      // move the four rules
+      var current_rule = Math.floor( d3.mouse(this)[0]/220 );
+
+      d3.select(".rulesgroup")
+        .attr("transform", "translate(" + (d3.mouse(this)[0]%220) + ",0)");
+      
+      //console.log(this);
+
+      d3.selectAll(".rule")
+        .style("stroke", function (d,i) {
+          if(i===current_rule)
+            return "red";
+          else
+            return "grey";
+        } );
+      
+      var retail_labels = d3.selectAll(".retailgroup").selectAll(".datalabel")
+        .attr("transform", function()
+          {
+            return "translate(" + ( (d3.mouse(svg.node())[0]-30)%220 ) + ",20)";
+          })
+        .text(function (d, i)
+          {
+            var retailpath = d3.select(this.parentNode).select("path");
+
+            var x = d3.time.scale()
+                .range([0, width])
+                .domain( [formatYear("2000"), formatYear("2012")] );
+            x0 =  x.invert(  (d3.mouse(svg.node())[0] -30)%220 );
+            
+            var bisectYear = d3.bisector(function(d) { return d.year; }).left;
+            var retaildata = retailpath.datum();
+            i = bisectYear(retaildata, x0);
+            console.log(i-1);
+            var label = retaildata[i-1].retail;
+            return label;
+          });
+
+      
+    }});
+}
+
 /*
 function mousemove() {
   d3.select(".rulesgroup")

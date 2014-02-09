@@ -23,41 +23,7 @@
     drawrules();
     showpricecharts();  
 
-    svg.on(
-      {"mousemove":
-      function ()
-      {
-        // move the four rules
-        var current_rule = Math.floor( d3.mouse(this)[0]/220 );
-
-        d3.select(".rulesgroup")
-          .attr("transform", "translate(" + (d3.mouse(this)[0]%220) + ",0)");
-        
-        //console.log(this);
-
-        d3.selectAll(".rule")
-          .style("stroke", function (d,i) {
-            if(i===current_rule)
-              return "red";
-            else
-              return "grey";
-          } );
-        
-        var retail_labels = d3.selectAll(".retailgroup").selectAll(".datalabel")
-          .attr("transform", function()
-            {
-              return "translate(" + (d3.mouse(svg.node())[0]%220 - 30) + ",20)";
-            })
-          .text(function (d, i)
-            {
-              console.log(d3.select(this.parentNode).select("path").datum());
-              return d;
-            });
-
-        //console.log(retail_labels);
-
-        
-      }});
+    svglisten();
 
 </script>
 
