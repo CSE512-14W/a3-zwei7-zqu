@@ -523,6 +523,64 @@ function svglisten()
 
             return "translate(" + ( (d3.mouse(svg.node())[0]-30)%220 ) + "," + farmpos + ")";
           });      
+
+      var percent_labels = d3.selectAll(".percentgroup").selectAll(".datalabel")  
+        .text(function (d, i)
+          {
+            // get path
+            var percentpath = d3.select(this.parentNode).select("path");
+            var percentdata = percentpath.datum();
+            
+            // reconstruct x scale
+            var x = d3.time.scale()
+                .range([0, width])
+                .domain( [formatYear("2000"), formatYear("2012")] );
+
+            x0 =  x.invert(  (d3.mouse(svg.node())[0]-30)%220 );
+            
+            var bisectYear = d3.bisector(function(d) { return d.year; }).left;
+            i = bisectYear(percentdata, x0);
+            if(i<1)
+              var percentvalue = "";
+            else
+              var percentvalue = percentdata[i-1].percent;
+
+            return percentvalue;
+          })
+          .attr("transform", function()
+          {
+            // get path
+            var percentpath = d3.select(this.parentNode).select("path");
+            var percentdata = percentpath.datum();
+            
+            // reconstruct x scale
+            var x = d3.time.scale()
+                .range([0, width])
+                .domain( [formatYear("2000"), formatYear("2012")] );
+
+            // reconstruct y scale
+            var y = d3.scale.linear()
+              .range([height, 0]);
+            var yMax = d3.max( percentdata, function(d) {return d.percent;} );
+            //console.log(yMax);
+            y.domain([0, yMax]);
+
+            x0 =  x.invert(  (d3.mouse(svg.node())[0]-30)%220 );
+            
+            var bisectYear = d3.bisector(function(d) { return d.year; }).left;
+            i = bisectYear(percentdata, x0);
+            if(i<1)
+            {
+              var percentpos = 0;
+            }
+            else
+            {
+              var percentvalue = percentdata[i-1].percent;
+              var percentpos = y(percentvalue);
+            }
+
+            return "translate(" + ( (d3.mouse(svg.node())[0]-30)%220 ) + "," + percentpos + ")";
+          });      
     }});
 }
 
