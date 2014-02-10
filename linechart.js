@@ -623,7 +623,7 @@ function svglisten()
       // reconstuct barchart y scale
       var y = d3.scale.linear()
         .rangeRound([200, 0])
-        .domain([0,50]);
+        .domain([0,500]);
 
       var retailarray = new Array(16);
 
@@ -636,7 +636,9 @@ function svglisten()
         {
           currentvalue = 0;
         }
-       
+        
+        currentvalue = Number(pounds[j]) * Number(currentvalue);
+
         retailarray[j] = {retail: currentvalue, 
                           height: 200-y(currentvalue),
                           vertical_start: y(sum)-200+y(currentvalue)

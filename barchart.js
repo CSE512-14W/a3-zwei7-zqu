@@ -17,7 +17,7 @@ function showbarchart()
 
 	var y = d3.scale.linear()
 	    .rangeRound([height, 0])
-	    .domain([0,50]);
+	    .domain([0,500]);
 
 	var xAxis = d3.svg.axis()
 	    .scale(x)
