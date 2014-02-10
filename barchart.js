@@ -17,7 +17,7 @@ function showbarchart()
 
 	var y = d3.scale.linear()
 	    .rangeRound([height, 0])
-	    .domain([0,100]);
+	    .domain([0,50]);
 
 	var xAxis = d3.svg.axis()
 	    .scale(x)
@@ -37,12 +37,17 @@ function showbarchart()
       .attr("class", "y axis")
       .call(yAxis);
     
+    var palette = ["#FF0000", "#FF6600", "#FF9900", "#FFCC00",
+                    "#003300", "#006600", "#009900", "#00CC00",
+                    "#CC0066", "#CC3366", "#CC6666", "#CC9966",
+                    "#999966", "#996666", "#993366", "#990066"];
     for(var j=0; j<16; j++)
     {
       barchart.append("rect")
         .attr("width", 40)
         .attr("x", x("retail") )
-        .attr("class", "retailrect");	
+        .attr("class", "retailrect")
+        .attr("fill", palette[j]);	
     }
       
     

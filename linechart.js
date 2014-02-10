@@ -597,6 +597,7 @@ function svglisten()
 
       var barchart = d3.select(".barchart");
       var slc = document.getElementsByName('retail_text_label');
+      /*
       var retailarray = [
         slc[0].innerHTML,
         slc[1].innerHTML,
@@ -615,14 +616,44 @@ function svglisten()
         slc[14].innerHTML,
         slc[15].innerHTML,
         ];
-      console.log(retailarray);
+        */
+      
+      
+      // reconstuct barchart y scale
+      var y = d3.scale.linear()
+        .rangeRound([200, 0])
+        .domain([0,50]);
+
+      var retailarray = new Array(16);
+
+      var sum = 0;
+      for(var j = 0; j<16; j++)
+      {
+        var currentvalue = slc[j].innerHTML;
+
+        if(currentvalue == '')
+        {
+          currentvalue = 0;
+        }
+       
+        retailarray[j] = {retail: currentvalue, 
+                          height: 200-y(currentvalue),
+                          vertical_start: y(sum)
+                          };
+        sum += Number(currentvalue);
+        
+      }
+
+      //console.log(retailarray);
 
       var retailrects = barchart.selectAll(".retailrect")
         .data(retailarray);
 
+      
       retailrects
-          .attr("height", function(d) { return d*3; })
-          .attr("y", function(d) { return d*50; });
+          .attr("height", function(d) { return d.height; })
+          .attr("y", function(d) { return d.vertical_start; });
+
       
     }});
 }
