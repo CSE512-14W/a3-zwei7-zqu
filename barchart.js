@@ -1,15 +1,18 @@
 function showbarchart()
 {
-	var width = 300;
-	var height = 200;
+	var fullwidth = 300;
+	var fullheight = 480;
 	var offset_x = 220*4 + 60;
 	var offset_y = 110*4 - height;
+    var margin = {top: 235, right: 5, bottom: 40, left: 40},
+        width = fullwidth - margin.left - margin.right,
+        height = fullheight - margin.top - margin.bottom;
 
-	var svg = d3.select("svg");
+	var svg = d3.select(".barchartsvg");
 
 	var barchart = svg.append("g")
 	   .attr("class", "barchart")
-	   .attr("transform", "translate(" + offset_x + ", " + offset_y + ")");
+	   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	var x = d3.scale.ordinal()
 	    .domain(["-", "retail", "farm", "."])
@@ -55,7 +58,6 @@ function showbarchart()
       barchart.append("rect")
         .attr("width", 40)
         .attr("x", x("farm")-20)
-        .attr("y", 10)
         .attr("class", "farmrect")
         .attr("fill", palette[j]);	
     }

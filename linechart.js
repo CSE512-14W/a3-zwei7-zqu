@@ -1,4 +1,4 @@
-var margin = {top: 5, right: 5, bottom: 5, left: 30},
+var margin = {top: 5, right: 5, bottom: 5, left: 40},
     fullwidth = 220,
     fullheight = 110,
     width = fullwidth - margin.left - margin.right,
@@ -44,6 +44,16 @@ function SwitchView()
 function showpricecharts()
 {
   d3.select("svg").selectAll(".cell").remove();
+  d3.select(".legendgroup").remove();
+
+  d3.select("svg").append("text")
+        .attr("class", "cell")
+        .attr("transform", "translate(0," + margin.top + "), rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Prices ($/lbs)");
+
   // Price Charts
   // dairies
   pricechart(0, 0, "data/butter.csv", "butter");
@@ -69,12 +79,28 @@ function showpricecharts()
   
   // time axies
   //drawtimeaxis();
+
+  // bar chart
+  showbarchart();
+  addlegend("price");
   
 }
 
 function showpercentcharts()
 {
   d3.select("svg").selectAll(".cell").remove();
+  d3.select(".barchart").remove();
+  d3.select(".legendgroup").remove();
+
+  d3.select("svg").append("text")
+        .attr("class", "cell")
+        .attr("transform", "translate(0," + margin.top + "), rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Farm to Retail (%)");
+
+
   // Percent Charts
   // dairies
   percentchart(0, 0, "data/butter.csv", "butter");
@@ -100,6 +126,7 @@ function showpercentcharts()
   
   // time axies
   //drawtimeaxis();
+  addlegend("percent");
 }
 
 function pricechart(offset_x, offset_y, individual_food, caption)
@@ -139,14 +166,9 @@ function pricechart(offset_x, offset_y, individual_food, caption)
     cell.append("g")
         .attr("class", "y axis")
         .call(yAxis);
-        /*
-      .append("text")
-        .attr("transform", "translate(-margin.left,0), rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .text("Price ($)");
-        */
+    
+    
+        
 
     var retailgroup = cell.append("g")
         .attr("class", "retailgroup");
@@ -386,6 +408,8 @@ function drawrules()
 
 function svglisten()
 {
+  
+
   d3.select("svg").on(
     {"mousemove":
     function ()
@@ -625,8 +649,10 @@ function svglisten()
       console.log(pounds);
 
       // reconstuct barchart y scale
+      var range_y = 250-45;
+
       var y = d3.scale.linear()
-        .rangeRound([200, 0])
+        .rangeRound([range_y, 0])
         .domain([0,500]);
 
       var retailarray = new Array(16);
@@ -652,14 +678,14 @@ function svglisten()
         currentvalue_f = Number(pounds[j]) * Number(currentvalue_f);
 
         retailarray[j] = {retail: currentvalue_r, 
-                          height: 200-y(currentvalue_r),
-                          vertical_start: y(sum_r)-200+y(currentvalue_r)
+                          height: range_y-y(currentvalue_r),
+                          vertical_start: y(sum_r)-range_y+y(currentvalue_r)
                           };
         sum_r += Number(currentvalue_r);
 
         farmarray[j] = {farm: currentvalue_f, 
-                          height: 200-y(currentvalue_f),
-                          vertical_start: y(sum_f)-200+y(currentvalue_f)
+                          height: range_y-y(currentvalue_f),
+                          vertical_start: y(sum_f)-range_y+y(currentvalue_f)
                           };
         sum_f += Number(currentvalue_f);
         

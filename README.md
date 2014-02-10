@@ -15,7 +15,7 @@ This visulization aims to show users the comparison of retail price and farm pri
 
 ## Running Instructions
 
-Access our visualization at http://cse512-14w.github.io/a3-zwei7-zqu/ or download this repository and run `python -m SimpleHTTPServer 9000` and access this from http://localhost:9000/.
+Access our visualization at http://students.washington.edu/zqu/512A3/lines.html or download this repository and run `python -m SimpleHTTPServer 9000` and access this from http://localhost:9000/.
 
 
 ## Story Board
