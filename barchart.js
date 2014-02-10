@@ -12,8 +12,8 @@ function showbarchart()
 	   .attr("transform", "translate(" + offset_x + ", " + offset_y + ")");
 
 	var x = d3.scale.ordinal()
-	    .rangeRoundBands([0, width], .1)
-	    .domain(["retail","farm"]);
+	    .domain(["-", "retail", "farm", "."])
+        .rangePoints([0, width]);
 
 	var y = d3.scale.linear()
 	    .rangeRound([height, 0])
@@ -45,8 +45,18 @@ function showbarchart()
     {
       barchart.append("rect")
         .attr("width", 40)
-        .attr("x", x("retail") )
+        .attr("x", x("retail")-20)
         .attr("class", "retailrect")
+        .attr("fill", palette[j]);	
+    }
+
+    for(var j=0; j<16; j++)
+    {
+      barchart.append("rect")
+        .attr("width", 40)
+        .attr("x", x("farm")-20)
+        .attr("y", 10)
+        .attr("class", "farmrect")
         .attr("fill", palette[j]);	
     }
       
