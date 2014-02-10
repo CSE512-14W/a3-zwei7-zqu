@@ -638,7 +638,7 @@ function svglisten()
        
         retailarray[j] = {retail: currentvalue, 
                           height: 200-y(currentvalue),
-                          vertical_start: y(sum)
+                          vertical_start: y(sum)-200+y(currentvalue)
                           };
         sum += Number(currentvalue);
         
