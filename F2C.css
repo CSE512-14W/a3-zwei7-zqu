@@ -1,6 +1,7 @@
 
-body text {
+body text{
   font: 10px sans-serif;
+  font-size: 10px;
 }
 
 .axis text {
@@ -56,4 +57,19 @@ body text {
 .interactive {
   fill: white;
   fill-opacity: 0.1;
+}
+
+.title text
+{
+  font-size: 36px;
+}
+
+.infogroup text
+{
+  font-size: 12px;
+}
+
+.legendgroup text
+{
+  font-size: 12px;
 }

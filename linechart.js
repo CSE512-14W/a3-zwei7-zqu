@@ -44,6 +44,7 @@ function SwitchView()
 function showpricecharts()
 {
   d3.select("svg").selectAll(".cell").remove();
+  d3.select(".legendgroup").remove();
 
   d3.select("svg").append("text")
         .attr("class", "cell")
@@ -81,13 +82,15 @@ function showpricecharts()
 
   // bar chart
   showbarchart();
+  addlegend("price");
   
 }
 
 function showpercentcharts()
 {
   d3.select("svg").selectAll(".cell").remove();
-  d3.select(".barchartsvg").remove();
+  d3.select(".barchart").remove();
+  d3.select(".legendgroup").remove();
 
   d3.select("svg").append("text")
         .attr("class", "cell")
@@ -123,6 +126,7 @@ function showpercentcharts()
   
   // time axies
   //drawtimeaxis();
+  addlegend("percent");
 }
 
 function pricechart(offset_x, offset_y, individual_food, caption)

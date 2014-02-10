@@ -1,17 +1,14 @@
 function showbarchart()
 {
 	var fullwidth = 300;
-	var fullheight = 250;
+	var fullheight = 480;
 	var offset_x = 220*4 + 60;
 	var offset_y = 110*4 - height;
-    var margin = {top: 5, right: 5, bottom: 40, left: 40},
+    var margin = {top: 235, right: 5, bottom: 40, left: 40},
         width = fullwidth - margin.left - margin.right,
         height = fullheight - margin.top - margin.bottom;
 
-	var svg = d3.select("body").insert("svg",".customizabletable")
-       .attr("class", "barchartsvg")
-       .attr("width", fullwidth)
-       .attr("height", fullheight);
+	var svg = d3.select(".barchartsvg");
 
 	var barchart = svg.append("g")
 	   .attr("class", "barchart")
