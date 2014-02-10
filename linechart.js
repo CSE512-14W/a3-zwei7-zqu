@@ -597,28 +597,29 @@ function svglisten()
 
       var barchart = d3.select(".barchart");
       var slc = document.getElementsByName('retail_text_label');
-      /*
-      var retailarray = [
-        slc[0].innerHTML,
-        slc[1].innerHTML,
-        slc[2].innerHTML,
-        slc[3].innerHTML,
-        slc[4].innerHTML,
-        slc[5].innerHTML,
-        slc[6].innerHTML,
-        slc[7].innerHTML,
-        slc[8].innerHTML,
-        slc[9].innerHTML,
-        slc[10].innerHTML,
-        slc[11].innerHTML,
-        slc[12].innerHTML,
-        slc[13].innerHTML,
-        slc[14].innerHTML,
-        slc[15].innerHTML,
-        ];
-        */
+      var pounds = [document.getElementById('butter').value,
+                    document.getElementById('cheese').value,
+                    document.getElementById('icecream').value,
+                    document.getElementById('wholemilk').value,
+
+                    document.getElementById('broccoli').value,
+                    document.getElementById('lettuce').value,
+                    document.getElementById('potatoes').value,
+                    document.getElementById('tomatoes').value,
+
+                    document.getElementById('apples').value,
+                    document.getElementById('grapefruit').value,
+                    document.getElementById('grapes').value,
+                    document.getElementById('lemons').value,
+
+                    document.getElementById('oranges').value,
+                    document.getElementById('peaches').value,
+                    document.getElementById('pears').value,
+                    document.getElementById('strawberries').value
+                    ];
       
-      
+      console.log(pounds);
+
       // reconstuct barchart y scale
       var y = d3.scale.linear()
         .rangeRound([200, 0])
