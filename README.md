@@ -3,7 +3,7 @@ a3-zwei7-zqu
 
 ## Team Members
 
-1. Zening Qiu zqu@uw.edu
+1. Zening Qu zqu@uw.edu
 2. Nina(Zhuxiaona) Wei zwei7@uw.edu
 
 ## Project Name
@@ -20,15 +20,13 @@ Access our visualization at http://students.washington.edu/zqu/512A3/lines.html 
 
 ## Story Board
 
-Please see our storyboard [here](http://).  
+Please see our storyboard [here](https://www.dropbox.com/s/v9z84jgt0ygwxtc/a3-zwei7-zqu_Storyboard.pdf).  
 
 ### Changes between Storyboard and the Final Implementation
 
 A biggest change between storyboard and the final implementation is that we decided not to visulize the basket datasets. After careful study and analysis, we found that the data of baskets represents the CPI value. While, our goals is to help consumer to check the gap between retail and farm price. It seemed that visualize the basket datasets is not that meaningful. What is worse, it also would bring confusion to users. 
 
 Also, we changed elements of the graphic design, visualization layouts etc.
-
-
 
 
 ## Development Process
@@ -40,22 +38,17 @@ Also, we changed elements of the graphic design, visualization layouts etc.
 2. Understood and analyzed the final dataset, and then transformed and filtered the data. 
 8h
 3. Setted goals and initial questions, at the same time, brainstormed and sketched for the visualization.
-4h
+5h
 4. Created low-fidelity prototype (sketching), and high-fidelity prototype (tableau).
 4h
 5. Criqued and iterated the prototypes. 
-4h
-6. Developed the visualization:
-(1) linecharts (default, show prices)
-(2) Interactive linecharts (show prices linecharts, and show percentages linecharts, add change button) 
-(3) Customize panel 
-(4) Timeline axis
-(5) Stacked bar 
-(6) Interaction between customize panel and stacked bar
-
-7. Final Documentation write-up.
+5h
+6. Developed the visualization. 
+30h
+7. Final Documentation write-up. 
+5h
 
 #### Group corporation
-We worked all together during the whole process except the coding part. Zening did almost all the coding work. With no experiene in coding, Nina spent a lot of time to learn Javascript and D3 before, but only contributed a little into the development because of the time intense. Nina conducted the documentation write-up, and we edited all the documents together.
+We worked all together during the whole process except the coding part. Zening did almost all the coding work. With no experiene in coding, Nina spent a lot of time to learn Javascript and D3 before, but only contributed a little into the development because of the time intense. Nina conducted the storyboard, documentation write-up, and the graphic design.
 
 Develop the visualization took the most time, and then study the data also took a lot of time.
