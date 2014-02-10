@@ -1,4 +1,4 @@
-var margin = {top: 5, right: 5, bottom: 5, left: 30},
+var margin = {top: 5, right: 5, bottom: 5, left: 40},
     fullwidth = 220,
     fullheight = 110,
     width = fullwidth - margin.left - margin.right,
@@ -44,6 +44,15 @@ function SwitchView()
 function showpricecharts()
 {
   d3.select("svg").selectAll(".cell").remove();
+
+  d3.select("svg").append("text")
+        .attr("class", "cell")
+        .attr("transform", "translate(0," + margin.top + "), rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Prices ($/lbs)");
+
   // Price Charts
   // dairies
   pricechart(0, 0, "data/butter.csv", "butter");
@@ -139,14 +148,9 @@ function pricechart(offset_x, offset_y, individual_food, caption)
     cell.append("g")
         .attr("class", "y axis")
         .call(yAxis);
-        /*
-      .append("text")
-        .attr("transform", "translate(-margin.left,0), rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .text("Price ($)");
-        */
+    
+    
+        
 
     var retailgroup = cell.append("g")
         .attr("class", "retailgroup");

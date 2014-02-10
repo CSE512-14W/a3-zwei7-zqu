@@ -1,10 +1,14 @@
 
-body {
+body text {
   font: 10px sans-serif;
 }
 
 .axis text {
-  font: 7px sans-serif;
+  font: 6px sans-serif;
+}
+
+.y.axis text {
+  font: 8px sans-serif;
 }
 
 .axis line,
