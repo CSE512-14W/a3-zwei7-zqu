@@ -173,6 +173,7 @@ function pricechart(offset_x, offset_y, individual_food, caption)
 
     farmgroup.append("text")
         .attr("class", "datalabel")
+        .attr("name", "farm_text_label")
         .style("display", "none")
         .text("")
         .style("text-anchor", "start")
@@ -299,6 +300,7 @@ function percentchart(offset_x, offset_y, individual_food, caption)
         .attr("d", percentline);
     percentpath.append("text")
         .attr("class", "datalabel")
+        .attr("name", "percent_text_label")
         .style("display", "none")
         .text("percent default");
     
@@ -596,7 +598,9 @@ function svglisten()
           });      
 
       var barchart = d3.select(".barchart");
-      var slc = document.getElementsByName('retail_text_label');
+      var slc_r = document.getElementsByName('retail_text_label');
+      var slc_f = document.getElementsByName('farm_text_label');
+
       var pounds = [document.getElementById('butter').value,
                     document.getElementById('cheese').value,
                     document.getElementById('icecream').value,
@@ -626,24 +630,38 @@ function svglisten()
         .domain([0,500]);
 
       var retailarray = new Array(16);
+      var farmarray = new Array(16);
 
-      var sum = 0;
+      var sum_r = 0;
+      var sum_f = 0;
       for(var j = 0; j<16; j++)
       {
-        var currentvalue = slc[j].innerHTML;
+        var currentvalue_r = slc_r[j].innerHTML;
+        var currentvalue_f = slc_f[j].innerHTML;
 
-        if(currentvalue == '')
+        if(currentvalue_r == '')
         {
-          currentvalue = 0;
+          currentvalue_r = 0;
+        }
+        if(currentvalue_f == '')
+        {
+          currentvalue_f = 0;
         }
         
-        currentvalue = Number(pounds[j]) * Number(currentvalue);
+        currentvalue_r = Number(pounds[j]) * Number(currentvalue_r);
+        currentvalue_f = Number(pounds[j]) * Number(currentvalue_f);
 
-        retailarray[j] = {retail: currentvalue, 
-                          height: 200-y(currentvalue),
-                          vertical_start: y(sum)-200+y(currentvalue)
+        retailarray[j] = {retail: currentvalue_r, 
+                          height: 200-y(currentvalue_r),
+                          vertical_start: y(sum_r)-200+y(currentvalue_r)
                           };
-        sum += Number(currentvalue);
+        sum_r += Number(currentvalue_r);
+
+        farmarray[j] = {farm: currentvalue_f, 
+                          height: 200-y(currentvalue_f),
+                          vertical_start: y(sum_f)-200+y(currentvalue_f)
+                          };
+        sum_f += Number(currentvalue_f);
         
       }
 
@@ -651,13 +669,18 @@ function svglisten()
 
       var retailrects = barchart.selectAll(".retailrect")
         .data(retailarray);
-
       
       retailrects
           .attr("height", function(d) { return d.height; })
           .attr("y", function(d) { return d.vertical_start; });
 
+       var retailrects = barchart.selectAll(".farmrect")
+        .data(farmarray);
       
+      retailrects
+          .attr("height", function(d) { return d.height; })
+          .attr("y", function(d) { return d.vertical_start; });
+
     }});
 }
 
