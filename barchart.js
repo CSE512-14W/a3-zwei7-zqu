@@ -63,10 +63,10 @@ function showbarchart()
         .style("font-size", "12px")
         .text("Spending = Price * Weight");
     
-    var palette = ["#FF0000", "#FF6600", "#FF9900", "#FFCC00",
-                    "#003300", "#006600", "#009900", "#00CC00",
-                    "#CC0066", "#CC3366", "#CC6666", "#CC9966",
-                    "#999966", "#996666", "#993366", "#990066"];
+    var palette = ["#5259C9", "#567ED4", "#5692BD", "#56C1D4",
+                    "#5AB02A", "#79992C", "#B0AE2A", "#A69727",
+                    "#ED7E3B", "#D66340", "#ED4A3B", "#E3385B",
+                    "#D64D4A", "#E04E8F", "#C950C3", "#BD4EE0"];
     for(var j=0; j<16; j++)
     {
       barchart.append("rect")
