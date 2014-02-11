@@ -17,6 +17,9 @@ This visulization aims to show users the comparison of retail price and farm pri
 
 Access our visualization at http://students.washington.edu/zqu/512A3/lines.html or download this repository and run `python -m SimpleHTTPServer 9000` and access this from http://localhost:9000/.
 
+The working demo should look like this.
+![](http://students.washington.edu/zqu/price.png)
+
 
 ## Story Board
 
@@ -45,7 +48,7 @@ Also, we changed elements of the graphic design, visualization layouts etc.
 5. Criqued and iterated the prototypes. 
 5h
 6. Developed the visualization. 
-30h
+40h
 7. Final Documentation write-up. 
 5h
 
