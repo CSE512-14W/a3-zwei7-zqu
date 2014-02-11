@@ -13,6 +13,15 @@ div {
   font: 8px "Helvetica-Light";
 }
 
+.major.x.axis text
+{
+  font: 12px "Helvetica-Light";
+}
+.major.y.axis text
+{
+  font: 10px "Helvetica-Light";
+}
+
 .axis line,
 .axis path {
   fill: none;

@@ -4,7 +4,7 @@ function showbarchart()
 	var fullheight = 480;
 	var offset_x = 220*4 + 60;
 	var offset_y = 110*4 - height;
-    var margin = {top: 235, right: 5, bottom: 40, left: 40},
+    var margin = {top: 235, right: 5, bottom: 40, left: 50},
         width = fullwidth - margin.left - margin.right,
         height = fullheight - margin.top - margin.bottom;
 
@@ -15,7 +15,7 @@ function showbarchart()
 	   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	var x = d3.scale.ordinal()
-	    .domain(["-", "retail", "farm", "."])
+	    .domain(["-", "retail spending", "farm value", "."])
         .rangePoints([0, width]);
 
 	var y = d3.scale.linear()
@@ -32,13 +32,36 @@ function showbarchart()
 	    .tickFormat(d3.format(".2s"));
 
 	barchart.append("g")
-	      .attr("class", "x axis")
+	      .attr("class", "major x axis")
 	      .attr("transform", "translate(0," + height + ")")
 	      .call(xAxis);
 
     barchart.append("g")
-      .attr("class", "y axis")
-      .call(yAxis);
+      .attr("class", "major y axis")
+      .call(yAxis)
+      .append("text")
+        .attr("transform", "translate(" + (-margin.left) + ", 0), rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .style("font-size", "12px")
+        .text("Spendings ($)");
+    
+    var title = barchart.append("g");
+    title.append("text")
+      .attr("transform", "translate(" + width + ", 0)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .style("font-size", "12px")
+        .text("Your Spending vs Farm Value");
+    title.append("text")
+      .attr("transform", "translate(" + width + ", 15)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .style("font-size", "12px")
+        .text("Spending = Price * Weight");
     
     var palette = ["#FF0000", "#FF6600", "#FF9900", "#FFCC00",
                     "#003300", "#006600", "#009900", "#00CC00",
@@ -48,7 +71,7 @@ function showbarchart()
     {
       barchart.append("rect")
         .attr("width", 40)
-        .attr("x", x("retail")-20)
+        .attr("x", x("retail spending")-20)
         .attr("class", "retailrect")
         .attr("fill", palette[j]);	
     }
@@ -57,7 +80,7 @@ function showbarchart()
     {
       barchart.append("rect")
         .attr("width", 40)
-        .attr("x", x("farm")-20)
+        .attr("x", x("farm value")-20)
         .attr("class", "farmrect")
         .attr("fill", palette[j]);	
     }
