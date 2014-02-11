@@ -30,49 +30,93 @@
     drawrules();
     showpricecharts();  
     
-
-
     svglisten();
     
 
 </script>
 
+<!--<p style="position: absolute; left: 950px; right: 10px; top: 0px; font-size: 24px;font-weight: bold; line-height: 250%;">How much money goes to farmers’ pocket in your grocery spending?</p>
+<p style="position: absolute; left: 950px; top: 80px; font-size: 12px">Visualization of USDA “Price Spreads from Farm to Consumer”</p><-->
 
-<table class="customizabletable">
+<p style="position: absolute; right: 20px; bottom: 80px; font-size: 14px; font-family:Helvetica-Light">CSE 512 W14, Assignment 3</p>
+<p style="position: absolute; right: 20px; bottom: 60px; font-size: 14px; font-family:Helvetica-Light">Zening Qu, Master of HCDE, UW</p>
+<p style="position: absolute; right: 20px; bottom: 40px; font-size: 14px; font-family:Helvetica-Light">Nina(Zhuxiaona) Wei, Master of HCID, UW</p>
+
+<p style="position: absolute; left: 940px; top: 470px; font-size: 14px; font-family:Helvetica-Light">Total price = Retail/Farm price * Weight(lbs)</p>
+
+<div style="background-color: #FF0000; width: 15px; height: 15px; position: absolute; left: 920px; top: 150px; border: 0px"></div>
+<div style="width: 100px; height: 15px; position: absolute; left: 940px; top: 150px; border: 0px">butter</div>
+<div style="background-color: #FF6600; width: 15px; height: 15px; position: absolute; left: 1010px; top: 150px; border: 0px"></div>
+<div style="width: 100px; height: 15px; position: absolute; left: 1030px; top: 150px; border: 0px">cheese</div>
+<div style="background-color: #FF9900; width: 15px; height: 15px; position: absolute; left: 1100px; top: 150px; border: 0px"></div>
+<div style="width: 100px; height: 15px; position: absolute; left: 1120px; top: 150px; border: 0px">ice cream</div>
+<div style="background-color: #FFCC00; width: 15px; height: 15px; position: absolute; left: 1190px; top: 150px; border: 0px"></div>
+<div style="width: 100px; height: 15px; position: absolute; left: 1210px; top: 150px; border: 0px">whole milk</div>
+
+<div style="background-color: #003300; width: 15px; height: 15px; position: absolute; left: 920px; top: 170px; border: 0px"></div>
+<div style="width: 100px; height: 15px; position: absolute; left: 940px; top: 170px; border: 0px">broccoli</div>
+<div style="background-color: #006600; width: 15px; height: 15px; position: absolute; left: 1010px; top: 170px; border: 0px"></div>
+<div style="width: 100px; height: 15px; position: absolute; left: 1030px; top: 170px; border: 0px">lettuce</div>
+<div style="background-color: #009900; width: 15px; height: 15px; position: absolute; left: 1100px; top: 170px; border: 0px"></div>
+<div style="width: 100px; height: 15px; position: absolute; left: 1120px; top: 170px; border: 0px">potatoes</div>
+<div style="background-color: #00CC00; width: 15px; height: 15px; position: absolute; left: 1190px; top: 170px; border: 0px"></div>
+<div style="width: 100px; height: 15px; position: absolute; left: 1210px; top: 170px; border: 0px">tomatoes</div>
+
+<div style="background-color: #CC0066; width: 15px; height: 15px; position: absolute; left: 920px; top: 190px; border: 0px"></div>
+<div style="width: 100px; height: 15px; position: absolute; left: 940px; top: 190px; border: 0px">apples</div>
+<div style="background-color: #CC3366; width: 15px; height: 15px; position: absolute; left: 1010px; top: 190px; border: 0px"></div>
+<div style="width: 100px; height: 15px; position: absolute; left: 1030px; top: 190px; border: 0px">grapefruit</div>
+<div style="background-color: #CC6666; width: 15px; height: 15px; position: absolute; left: 1100px; top: 190px; border: 0px"></div>
+<div style="width: 100px; height: 15px; position: absolute; left: 1120px; top: 190px; border: 0px">grapes</div>
+<div style="background-color: #CC9966; width: 15px; height: 15px; position: absolute; left: 1190px; top: 190px; border: 0px"></div>
+<div style="width: 100px; height: 15px; position: absolute; left: 1210px; top: 190px; border: 0px">lemons</div>
+
+<div style="background-color: #999966; width: 15px; height: 15px; position: absolute; left: 920px; top: 210px; border: 0px"></div>
+<div style="width: 100px; height: 15px; position: absolute; left: 940px; top: 210px; border: 0px">oranges</div>
+<div style="background-color: #996666; width: 15px; height: 15px; position: absolute; left: 1010px; top: 210px; border: 0px"></div>
+<div style="width: 100px; height: 15px; position: absolute; left: 1030px; top: 210px; border: 0px">peaches</div>
+<div style="background-color: #993366; width: 15px; height: 15px; position: absolute; left: 1100px; top: 210px; border: 0px"></div>
+<div style="width: 100px; height: 15px; position: absolute; left: 1120px; top: 210px; border: 0px">pears</div>
+<div style="background-color: #990066; width: 15px; height: 15px; position: absolute; left: 1190px; top: 210px; border: 0px"></div>
+<div style="width: 100px; height: 15px; position: absolute; left: 1210px; top: 210px; border: 0px">strawberries</div>
+
+<table style="position: absolute; left: 20px; bottom: 40px; font-family: Helvetica-Light" class="customizabletable">
 <tr>
-  <td>Dairy</td><td></td>
-  <td>Vegetables</td><td></td>
-  <td>Fruits</td><td></td>
+  <td style="font-size: 16px; font-weight: bold">Dairy</td><td></td>
+  <td style="font-size: 16px; font-weight: bold">Vegetables</td><td></td>
+  <td style="font-size: 16px; font-weight: bold">Fruits</td><td></td>
   <td></td><td></td>
 </tr>
 <tr>
-  <td>butter</td> <td><input id="butter" type="text" value="0">pounds  </td>
-  <td>broccoli</td><td><input id="broccoli" type="text" value="6.71">pounds  </td>
-  <td>apples </td><td><input id="apples" type="text" value="34.07">pounds  </td>
-  <td>oranges </td><td><input id="oranges" type="text" value="25.02">pounds  </td>
+  <td>butter</td> <td><input id="butter" type="text" value="0">lbs  </td>
+  <td>broccoli</td><td><input id="broccoli" type="text" value="6.71">lbs  </td>
+  <td>apples </td><td><input id="apples" type="text" value="34.07">lbs  </td>
+  <td>oranges </td><td><input id="oranges" type="text" value="25.02">lbs  </td>
 </tr>
 <tr>
-  <td>cheese </td><td><input id="cheese" type="text" value="0">pounds  </td>
-  <td>lettuce </td><td><input id="lettuce" type="text" value="15.37">pounds  </td>
-  <td>grapefruit </td><td><input id="grapefruit" type="text" value="15.07">pounds  </td>
-  <td>peaches </td><td><input id="peaches" type="text" value="8.87">pounds</td>
+  <td>cheese </td><td><input id="cheese" type="text" value="0">lbs  </td>
+  <td>lettuce </td><td><input id="lettuce" type="text" value="15.37">lbs  </td>
+  <td>grapefruit </td><td><input id="grapefruit" type="text" value="15.07">lbs  </td>
+  <td>peaches </td><td><input id="peaches" type="text" value="8.87">lbs</td>
 </tr>
 <tr>
-  <td>ice cream </td><td><input id="icecream" type="text" value="0">pounds</td>
-  <td>potatoes </td><td><input id="potatoes" type="text" value="89.92">pounds</td>
-  <td>grapes </td><td><input id="grapes" type="text" value="15.89">pounds</td>
-  <td>pears </td><td><input id="pears" type="text" value="3.87">pounds</td>
+  <td>ice cream </td><td><input id="icecream" type="text" value="0">lbs</td>
+  <td>potatoes </td><td><input id="potatoes" type="text" value="89.92">lbs</td>
+  <td>grapes </td><td><input id="grapes" type="text" value="15.89">lbs</td>
+  <td>pears </td><td><input id="pears" type="text" value="3.87">lbs</td>
 </tr>
 <tr>
-  <td>whole milk </td><td><input id="wholemilk" type="text" value="0">pounds</td>
-  <td>tomatoes </td><td><input id="tomatoes" type="text" value="20.91">pounds</td>
-  <td>lemons </td><td><input id="lemons" type="text" value="6.01">pounds</td>
-  <td>strawberries </td><td><input id="strawberries" type="text" value="8.27">pounds</td>
+  <td>whole milk </td><td><input id="wholemilk" type="text" value="0">lbs</td>
+  <td>tomatoes </td><td><input id="tomatoes" type="text" value="20.91">lbs</td>
+  <td>lemons </td><td><input id="lemons" type="text" value="6.01">lbs</td>
+  <td>strawberries </td><td><input id="strawberries" type="text" value="8.27">lbs</td>
 </tr>
 
 </table>
 
-<button type="button" onclick="SwitchView()" id="SwitchButton">Show Farm/Retail Percentage</button> </td>
+
+<button style="position: absolute; left: 20px; bottom: 200px; font: "Helvetica-Light" type="button" onclick="SwitchView()" id="SwitchButton">Show Farm/Retail Percentage</button> </td>
+
 
 
 

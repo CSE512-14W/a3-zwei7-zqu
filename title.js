@@ -18,14 +18,14 @@ function addtitle()
 
 	infogroup
 	   .append("text")
-	   .attr("transform", "translate(" + margin.left + "," + (margin.top+36) + ")")
+	   .attr("transform", "translate(" + margin.left + "," + (margin.top+40) + ")")
 		.attr("y", 6)
 		.attr("dy", ".71em")
 		.style("text-anchor", "start")
 		.text("Of your grocery spendings at retail stores,");
     infogroup
 	   .append("text")
-	   .attr("transform", "translate(" + margin.left + "," + (margin.top+50) + ")")
+	   .attr("transform", "translate(" + margin.left + "," + (margin.top+60) + ")")
 		.attr("y", 6)
 		.attr("dy", ".71em")
 		.style("text-anchor", "start")
@@ -45,27 +45,27 @@ function addlegend(type)
 		   .append("line")
 		   .attr("class", "retailline")
 		   .attr("x1", 10)
-		   .attr("y1", (margin.top+80))
+		   .attr("y1", (margin.top+100))
 		   .attr("x2", 40)
-		   .attr("y2", (margin.top+80));
+		   .attr("y2", (margin.top+100));
 		legendgroup
 		   .append("line")
 		   .attr("class", "farmline")
 		   .attr("x1", 10)
-		   .attr("y1", (margin.top+95))
+		   .attr("y1", (margin.top+115))
 		   .attr("x2", 40)
-		   .attr("y2", (margin.top+95));
+		   .attr("y2", (margin.top+115));
 
 		legendgroup
 		   .append("text")
-		   .attr("transform", "translate(" + (margin.left+42) + "," + (margin.top+70) + ")")
+		   .attr("transform", "translate(" + (margin.left+40) + "," + (margin.top+90) + ")")
 			.attr("y", 6)
 			.attr("dy", ".71em")
 			.style("text-anchor", "start")
 			.text("Retail prices (inflation adjusted)");
 		legendgroup
 		   .append("text")
-		   .attr("transform", "translate(" + (margin.left+42) + "," + (margin.top+85) + ")")
+		   .attr("transform", "translate(" + (margin.left+40) + "," + (margin.top+105) + ")")
 			.attr("y", 6)
 			.attr("dy", ".71em")
 			.style("text-anchor", "start")
@@ -77,12 +77,12 @@ function addlegend(type)
 		   .append("line")
 		   .attr("class", "percentline")
 		   .attr("x1", 10)
-		   .attr("y1", (margin.top+80))
+		   .attr("y1", (margin.top+100))
 		   .attr("x2", 40)
-		   .attr("y2", (margin.top+80));
+		   .attr("y2", (margin.top+100));
 		legendgroup
 		   .append("text")
-		   .attr("transform", "translate(" + (margin.left+42) + "," + (margin.top+70) + ")")
+		   .attr("transform", "translate(" + (margin.left+40) + "," + (margin.top+90) + ")")
 			.attr("y", 6)
 			.attr("dy", ".71em")
 			.style("text-anchor", "start")

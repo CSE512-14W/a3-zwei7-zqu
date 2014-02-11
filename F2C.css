@@ -1,15 +1,16 @@
-
 body text{
-  font: 10px sans-serif;
-  font-size: 10px;
+  font: 10px "Helvetica-Light";
 }
 
+div {
+  font: 12px "Helvetica-Light";
+}
 .axis text {
-  font: 6px sans-serif;
+  font: 6px "Helvetica-Light";
 }
 
 .y.axis text {
-  font: 8px sans-serif;
+  font: 8px "Helvetica-Light";
 }
 
 .axis line,
